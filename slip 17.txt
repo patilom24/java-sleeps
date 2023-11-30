@@ -1,0 +1,164 @@
+slip 17:
+Q1->
+import java.io.*;
+import java.util.*;
+class customer
+{
+String name;
+int ph;
+}
+class depositor extends customer
+{
+int acno;
+double balance;
+}
+class borrower extends depositor
+{
+int lno;
+double lamount;
+public void read()
+{
+Scanner sc =new Scanner(System.in);
+System.out.println("Enter the customer name");
+super.name = sc.next();
+System.out.println("Enter the customer phone number");
+ super.ph = sc.nextInt();
+System.out.println("Enter the depositer account number");
+ super.acno = sc.nextInt();
+System.out.println("Enter the depositer account balance");
+ super.balance = sc.nextDouble();
+System.out.println("Enter the borrower loan number");
+ lno = sc.nextInt();
+System.out.println("Enter the borrower loan amount");
+ lamount = sc.nextDouble();
+}
+public void display()
+{
+ System.out.println("Customer name is::" +super.name + "\n 
+Phone number ::"+super.ph +"\n Account number is::" +super.acno +"\n 
+Account balance is::"+super.balance + "\n Loan number is::"+lno+"\n Loan 
+amount is::"+lamount);
+}
+}
+class cdemo
+{
+public static void main(String args[])
+{
+int n,i;
+Scanner sc = new Scanner(System.in);
+System.out.println("How many customer you want");
+n= sc.nextInt();
+borrower b[] = new borrower[n];
+System.out.println("Enter "+n+" Customer information");
+for(i=0;i<n;i++)
+{
+b[i]=new borrower();
+b[i].read();
+}
+System.out.println("***********Customer 
+information***********");
+for(i=0;i<n;i++)
+b[i].display();
+}
+} 
+Qu 8: Employee and manager [ getsalary() method overriden]
+import java.io.*;
+import java.util.*;
+class employee
+{
+double salary;
+employee()
+{
+salary = 35000;
+}
+public double getsalary()
+{
+Scanner sc = new Scanner(System.in);
+double withdraw;
+System.out.println("Enter the salary which employee want to 
+withdraw ");
+withdraw =sc.nextDouble();
+return (salary - withdraw);
+}
+}
+class manager extends employee 
+{
+double traveling,rent;
+manager()
+{
+traveling = 2000;
+rent= 5000;
+}
+public double getsalary()
+ {
+ return (super.salary + traveling+rent);
+ }
+}
+class edemo
+{
+public static void main(String args[])
+{
+employee e = new employee();
+manager m = new manager();
+System.out.println("Employee salary is " + e.salary + 
+"\nEmployee salary ifter withdraw is" +e.getsalary());
+System.out.println("Manager Salary is"+m.getsalary());
+}
+}
+
+Q2->
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class TextBoxDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("TextBoxDemo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 200);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 2));
+
+        JLabel label1 = new JLabel("String 1:");
+        JTextField textField1 = new JTextField();
+
+        JLabel label2 = new JLabel("String 2:");
+        JTextField textField2 = new JTextField();
+
+        JLabel label3 = new JLabel("Result:");
+        JTextField textField3 = new JTextField();
+        textField3.setEditable(false);
+
+        JButton button1 = new JButton("Concatenate");
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String str1 = textField1.getText();
+                String str2 = textField2.getText();
+                textField3.setText(str1 + str2);
+            }
+        });
+
+        JButton button2 = new JButton("Reverse");
+        button2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String str1 = textField1.getText();
+                String str2 = textField2.getText();
+                String result = str1 + str2;
+                textField3.setText(new StringBuilder(result).reverse().toString());
+            }
+        });
+
+        panel.add(label1);
+        panel.add(textField1);
+        panel.add(label2);
+        panel.add(textField2);
+        panel.add(label3);
+        panel.add(textField3);
+        panel.add(button1);
+        panel.add(button2);
+
+        frame.getContentPane().add(panel);
+        frame.setVisible(true);
+    }
+}

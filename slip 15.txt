@@ -1,0 +1,84 @@
+slip 15:
+Q1->
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        String sourceFileName = "source.txt";
+        String destinationFileName = "destination.txt";
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(sourceFileName);
+            FileOutputStream fileOutputStream = new FileOutputStream(destinationFileName);
+
+            int data;
+            while ((data = fileInputStream.read()) != -1) {
+                fileOutputStream.write(data);
+            }
+
+            fileInputStream.close();
+            fileOutputStream.close();
+
+            System.out.println("File copied successfully.");
+        } catch (IOException e) {
+            System.out.println("Error occurred while copying the file.");
+            e.printStackTrace();
+        }
+    }
+}
+
+Q2->
+class Account {
+    String custname;
+    int accno;
+
+    Account() {
+        custname = "Not Available";
+        accno = 0;
+    }
+
+    Account(String custname, int accno) {
+        this.custname = custname;
+        this.accno = accno;
+    }
+}
+
+class SavingAccount extends Account {
+    double savingbal;
+    double minbal;
+
+    SavingAccount(String custname, int accno, double savingbal, double minbal) {
+        super(custname, accno);
+        this.savingbal = savingbal;
+        this.minbal = minbal;
+    }
+}
+
+class AccountDetail extends SavingAccount {
+    double depositamt;
+    double withdrawalamt;
+
+    AccountDetail(String custname, int accno, double savingbal, double minbal, double depositamt, double withdrawalamt) {
+        super(custname, accno, savingbal, minbal);
+        this.depositamt = depositamt;
+        this.withdrawalamt = withdrawalamt;
+    }
+
+    void displayCustomerDetails() {
+        System.out.println("Customer Name: " + custname);
+        System.out.println("Account Number: " + accno);
+        System.out.println("Savings Balance: " + savingbal);
+        System.out.println("Minimum Balance: " + minbal);
+        System.out.println("Deposit Amount: " + depositamt);
+        System.out.println("Withdrawal Amount: " + withdrawalamt);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        AccountDetail accountDetail = new AccountDetail("John Doe", 123456, 5000.00, 1000.00, 2000.00, 1500.00);
+        accountDetail.displayCustomerDetails();
+    }
+}

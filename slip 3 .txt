@@ -1,0 +1,96 @@
+slip 3 :
+Q1->
+import java.util.*;
+
+class City {
+    private String s[];
+    int n;
+
+    public City(int n) {
+        this.n = n;
+        s = new String[n];
+    }
+
+    public void accept() {
+        System.out.println("enter the name of cities : ");
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < n; i++) {
+            s[i] = sc.next();
+        }
+    }
+
+    public void sort() {
+        Arrays.sort(s);
+        for (int i = 0; i < n; i++) {
+            System.out.print(s[i] + "\t");
+        }
+    }
+}
+
+public class Ex3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enetr the no of cities : ");
+        int n = sc.nextInt();
+        City ob = new City(n);
+        ob.accept();
+        ob.sort();
+    }
+}
+
+Q2->
+import java.util.Scanner;
+
+class PateintIsPositiive extends RuntimeException {
+    public PateintIsPositiive() {
+        super("pateint is the covid poositive and need to hospitalise");
+    }
+}
+
+class PateintInfo {
+    private int age;
+    private float olev, hrctre;
+    private String name;
+
+    public PateintInfo(String name, int age, float olev, float hrctre) {
+        this.age = age;
+        this.name = name;
+        this.olev = olev;
+        this.hrctre = hrctre;
+    }
+
+    public void display() {
+        System.out.println("name : " + name + "\nAge : " + age + "\noxygen level : " + olev + "\npatient HRTC report : "
+                + hrctre + "\nthe patient is negative and no need to hospitalise .!");
+    }
+
+    public void isPoitive() {
+        if (olev < 95.00f && hrctre > 10.00f) {
+            try {
+                throw new PateintIsPositiive();
+            } catch (PateintIsPositiive e) {
+                e.printStackTrace();
+            }
+        } else {
+            display();
+        }
+    }
+}
+
+public class Pateint {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter the name of patient : ");
+        String name = sc.next();
+        System.out.print("enter age of the patient : ");
+        int age = sc.nextInt();
+        System.out.print("enter the oxygen level of an pateint ");
+        float olev = sc.nextFloat();
+        System.out.print("enter the hrtc report : ");
+        float hrctre = sc.nextFloat();
+        PateintInfo ob = new PateintInfo(name, age, olev, hrctre);
+        ob.isPoitive();
+        sc.close();
+    }
+}

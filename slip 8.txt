@@ -1,0 +1,66 @@
+slip 8:
+Q1->
+
+class Sphere {
+    private double radius;
+
+    public Sphere(double radius) {
+        this.radius = radius;
+    }
+
+    public double calculateVolume() {
+        return (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+    }
+
+    public double calculateSurfaceArea() {
+        return 4 * Math.PI * Math.pow(radius, 2);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Sphere sphere = new Sphere(5);
+        System.out.println("Volume: " + sphere.calculateVolume());
+        System.out.println("Surface Area: " + sphere.calculateSurfaceArea());
+    }
+}
+
+Q2->
+java
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    public void start(Stage primaryStage) {
+        VBox root = new VBox();
+        TextField textField = new TextField();
+        textField.setEditable(false);
+        Label label = new Label("Move the mouse and click anywhere in the window.");
+        root.getChildren().addAll(label, textField);
+
+        Scene scene = new Scene(root, 300, 250);
+
+        scene.setOnMouseMoved(event -> {
+            textField.setText("Mouse moved at: (" + event.getX() + ", " + event.getY() + ")");
+        });
+
+        scene.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseEvent.MOUSE_CLICKED)) {
+                textField.setText("Mouse clicked at: (" + event.getX() + ", " + event.getY() + ")");
+            }
+        });
+
+        primaryStage.setTitle("Mouse Event Handling");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}

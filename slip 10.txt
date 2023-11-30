@@ -1,0 +1,105 @@
+slip 10:
+Q1->
+import java.io.*;
+import java.util.*;
+interface cube
+{
+ int cubecal();
+}
+class idemo implements cube
+{
+ public int cubecal()
+ {
+ Scanner sc =new Scanner(System.in);
+ int n;
+ System.out.println("Enter the number");
+ n = sc.nextInt();
+ return n*n*n;
+ }
+ public static void main(String args[])
+ {
+ idemo i=new idemo();
+ System.out.println("Cube of a number is::" +i.cubecal());
+ }
+}
+
+Q2->
+vim studentinformation.java
+
+
+package student1;
+import java.io.*;
+import java.util.*;
+public class studentinformation
+{
+ public int rno;
+ public String Class,name;
+ public double per;
+ public studentinformation(int rno,String name,String Class,double 
+per)
+ {
+ this.rno =rno;
+ this.name =name;
+ this.Class = Class;
+ this.per = per;
+ }
+ public void display()
+ {
+ System.out.println(rno+"\t"+name+"\t"+Class+"\t"+per);
+ }
+}
+
+javac -d . studentinformation.java
+
+
+vim studentper.java
+
+
+import student1.*;
+import java.io.*;
+import java.util.*;
+public class studentper
+{
+ public static double percentage(int total)
+ {
+ return (total/5);
+ }
+ public static void main(String args[])
+ {
+ int rno,n,total,i,j;
+ String Class,name;
+ double per;
+ Scanner sc =new Scanner(System.in);
+ int m[]=new int[5];
+ System.out.println("How many student you want");
+ n = sc.nextInt();
+ studentinformation s[]=new studentinformation[n];
+ for(i=0;i<n;i++)
+ {
+ total=0;
+System.out.println("Enter rno");
+rno=sc.nextInt();
+ System.out.println("Enter student name");
+ name=sc.next();
+System.out.println("Enter the Class");
+Class = sc.next();
+System.out.println("Enter marks of five 
+subject");
+ for(j=0;j<5;j++)
+{
+ m[i]=sc.nextInt();
+total = total + m[i];
+ }
+ per = percentage(total);
+ s[i]=new studentinformation(rno,name,Class,per);
+ }
+ System.out.println("******** Student 
+onformation**************");
+ System.out.println("Rollno--Name--Class--Percentage ");
+ for(i=0; i<n;i++)
+ s[i].display();
+ }
+}
+javac main.java
+java main 
+

@@ -1,0 +1,97 @@
+slip 27:
+Q1->
+import java.io.*;
+import java.util.*;
+class employee
+{
+double salary;
+employee()
+{
+salary = 35000;
+}
+public double getsalary()
+{
+Scanner sc = new Scanner(System.in);
+double withdraw;
+System.out.println("Enter the salary which employee want to 
+withdraw ");
+withdraw =sc.nextDouble();
+return (salary - withdraw);
+}
+}
+class manager extends employee 
+{
+double traveling,rent;
+manager()
+{
+traveling = 2000;
+rent= 5000;
+}
+public double getsalary()
+ {
+ return (super.salary + traveling+rent);
+ }
+}
+class edemo
+{
+public static void main(String args[])
+{
+employee e = new employee();
+manager m = new manager();
+System.out.println("Employee salary is " + e.salary + 
+"\nEmployee salary ifter withdraw is" +e.getsalary());
+System.out.println("Manager Salary is"+m.getsalary());
+}
+}
+
+Q2->
+import java.io.*;
+import java.nio.file.*;
+import java.util.Set;
+
+public class FileInfo {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Please provide a file or directory path as command line argument.");
+            return;
+        }
+
+        String path = args[0];
+        File file = new File(path);
+
+        if (file.isDirectory()) {
+            System.out.println("The provided path is a directory.");
+            System.out.println("Do you want to delete all text files in this directory? (yes/no)");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String input = "";
+            try {
+                input = reader.readLine();
+            } catch (IOException e) {
+                System.out.println("Error reading input: " + e.getMessage());
+                return;
+            }
+
+            if (input.equalsIgnoreCase("yes")) {
+                int count = 0;
+                File[] files = file.listFiles();
+                for (File f : files) {
+                    if (f.isFile() && f.getName().endsWith(".txt")) {
+                        if (f.delete()) {
+                            count++;
+                        }
+                    }
+                }
+                System.out.println("Deleted " + count + " text files from the directory.");
+            } else {
+                System.out.println("No files were deleted.");
+            }
+        } else if (file.isFile()) {
+            System.out.println("The provided path is a file.");
+            System.out.println("File name: " + file.getName());
+            System.out.println("File size: " + file.length() + " bytes");
+            System.out.println("File last modified: " + new Date(file.lastModified()));
+        } else {
+            System.out.println("The provided path does not exist.");
+        }
+    }
+}

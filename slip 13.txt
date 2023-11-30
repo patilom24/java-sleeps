@@ -1,0 +1,67 @@
+slip 13:
+Q1->
+import java.io.*;
+import java.util.*;
+
+public class WordCount {
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.out.println("Usage: java WordCount <filename>");
+            System.exit(1);
+        }
+
+        String filename = args[0];
+        File file = new File(filename);
+
+        if (!file.exists()) {
+            System.out.println("File does not exist.");
+            System.exit(1);
+        }
+
+        try {
+            Scanner scanner = new Scanner(file);
+            int lineCount = 0;
+            int wordCount = 0;
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                lineCount++;
+                wordCount += line.split("\\s+").length;
+            }
+
+            System.out.println("Number of lines: " + lineCount);
+            System.out.println("Number of words: " + wordCount);
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+            System.exit(1);
+        }
+    }
+}
+javac WordCount.java
+java WordCount WordCount.java
+
+Q2->
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class Main {
+    public static void main(String[] args) {
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat dateFormat3 = new SimpleDateFormat("EEEE MMMM dd yyyy");
+        SimpleDateFormat dateFormat4 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+        SimpleDateFormat dateFormat5 = new SimpleDateFormat("dd/MM/yy hh:mm:ss a z");
+
+        System.out.println("Current date is : " + dateFormat1.format(date));
+        System.out.println("Current date is : " + dateFormat2.format(date));
+        System.out.println("Current date is : " + dateFormat3.format(date));
+        System.out.println("Current date and time is : " + dateFormat4.format(date));
+        System.out.println("Current date and time is : " + dateFormat5.format(date));
+    }
+}

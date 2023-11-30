@@ -1,0 +1,113 @@
+slip 24:
+Q1->
+java
+import java.io.*;
+import java.util.*;
+
+abstract class Bank {
+    double balance;
+
+    public Bank(double balance) {
+        this.balance = balance;
+    }
+
+    public abstract double getBalance();
+}
+
+class BankA extends Bank {
+    public BankA(double balance) {
+        super(balance);
+    }
+
+    public double getBalance() {
+        return balance + 100;
+    }
+}
+
+class BankB extends Bank {
+    public BankB(double balance) {
+        super(balance);
+    }
+
+    public double getBalance() {
+        return balance + 150;
+    }
+}
+
+class BankC extends Bank {
+    public BankC(double balance) {
+        super(balance);
+    }
+
+    public double getBalance() {
+        return balance + 200;
+    }
+}
+
+public class NumberMain {
+    public static void main(String[] args) {
+        BankA bankA = new BankA(100);
+        BankB bankB = new BankB(100);
+        BankC bankC = new BankC(100);
+
+        System.out.println("Balance in Bank A: " + bankA.getBalance());
+        System.out.println("Balance in Bank B: " + bankB.getBalance());
+        System.out.println("Balance in Bank C: " + bankC.getBalance());
+    }
+}
+
+Q2->
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class ConcentricCircles extends JFrame implements MouseListener {
+    private static final long serialVersionUID = 1L;
+
+    public ConcentricCircles() {
+        setTitle("Concentric Circles");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addMouseListener(this);
+    }
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        int x = getWidth() / 2;
+        int y = getHeight() / 2;
+        int radius = Math.min(x, y);
+        g.setColor(Color.RED);
+        g.fillOval(x - radius, y - radius, 2 * radius, 2 * radius);
+        g.setColor(Color.GREEN);
+        radius = radius / 2;
+        g.fillOval(x - radius, y - radius, 2 * radius, 2 * radius);
+        g.setColor(Color.BLUE);
+        radius = radius / 2;
+        g.fillOval(x - radius, y - radius, 2 * radius, 2 * radius);
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        repaint();
+    }
+
+    public void mousePressed(MouseEvent e) {
+    }
+
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    public void mouseExited(MouseEvent e) {
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new ConcentricCircles().setVisible(true);
+            }
+        });
+    }
+}

@@ -1,0 +1,118 @@
+slip 5:
+Q1->
+import java.util.Scanner;
+
+class Continent {
+    String conti;
+
+    public Continent(String conti) {
+        this.conti = conti;
+    }
+}
+
+class Country extends Continent {
+    String country;
+
+    public Country(String conti, String country) {
+        super(conti);
+        this.country = country;
+    }
+}
+
+class State extends Country {
+    String place, state;
+
+    public State(String conti, String country, String state, String place) {
+        super(conti, country);
+        this.state = state;
+        this.place = place;
+    }
+
+    public void display() {
+        System.out.println("THE LOCATION : ");
+        System.out.println("CONTINENT : " + conti);
+        System.out.println("COUNTRY : " + country);
+        System.out.println("STATE : " + state);
+        System.out.println("PLACE : " + place);
+    }
+}
+
+public class Multi {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter the continet in you live :");
+        String conti = sc.next();
+        System.out.print("enter the country in '" + conti + "' you live :");
+        String country = sc.next();
+        System.out.print("enter the state in '" + country + "' you live :");
+        String state = sc.next();
+        System.out.print("enter the place in ' " + state + "' you live :");
+        String place = sc.next();
+        State ob = new State(conti, country, state, place);
+        ob.display();
+    }
+}
+Q2->
+java
+import java.util.Scanner;
+
+public class MatrixOperations {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[][] matrix1 = new int[3][3];
+        int[][] matrix2 = new int[3][3];
+        int choice;
+
+        do {
+            System.out.println("1. Addition");
+            System.out.println("2. Multiplication");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Addition of two matrices: ");
+                    addMatrices(matrix1, matrix2);
+                    break;
+                case 2:
+                    System.out.println("Multiplication of two matrices: ");
+                    multiplyMatrices(matrix1, matrix2);
+                    break;
+                case 3:
+                    System.out.println("Exiting the program...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 3);
+    }
+
+    public static void addMatrices(int[][] matrix1, int[][] matrix2) {
+        int[][] result = new int[3][3];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                result[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+
+        displayMatrix(result);
+    }
+
+    public static void multiplyMatrices(int[][] matrix1, int[][] matrix2)
+    {
+        int c[][]=new int[3][3]; 
+for(int i=0;i<3;i++){    
+for(int j=0;j<3;j++){    
+c[i][j]=0;      
+for(int k=0;k<3;k++)      
+{      
+c[i][j]+=a[i][k]*b[k][j];      
+}//end of k loop  
+System.out.print(c[i][j]+" ");   
+}
+System.out.println();    
+}    
+}
+}

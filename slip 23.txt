@@ -1,0 +1,124 @@
+slip 23:
+Q1->
+
+import java.io.*;
+
+class MyNumber {
+    private int x;
+
+    public MyNumber() {
+        x = 0;
+        System.out.println("The value is in first constructor :" + x);
+    }
+
+    public MyNumber(int x) {
+        this.x = x;
+        System.out.println("The no. is :" + x);
+    }
+
+    public boolean isNegative() {
+        return (x < 0);
+    }
+
+    public boolean isPostive() {
+        return (x > 0);
+    }
+
+    public boolean isOdd() {
+        return (x % 2 == 1);
+    }
+
+    public boolean isEven() {
+        return (x % 2 == 0);
+    }
+
+    public boolean isZero() {
+        return (x == 0);
+    }
+}
+
+public class NumberMain {
+    public static void main(String[] args) throws IOException {
+        int x = Integer.parseInt(args[0]);
+        MyNumber obj = new MyNumber(x);
+        if (obj.isEven()) {
+            System.out.println("the no is even");
+        }
+        if (obj.isOdd()) {
+            System.out.println("the no is odd");
+        }
+        if (obj.isPostive()) {
+            System.out.println("the no is postive");
+        }
+        if (obj.isNegative()) {
+            System.out.println("the no is negative");
+        }
+        if (obj.isZero()) {
+            System.out.println("the no is zero");
+        }
+    }
+}
+
+javac NumberMain.java
+java NumberMain 105
+
+Q2->
+import javax.swing.*; 
+import java.util.*; 
+import java.text.*; 
+import java.awt.*; 
+import java.awt.event.*; 
+class slip23_2 extends KeyAdapter 
+{ 
+ JLabel l1,l2,l3; 
+ JTextField t1,t2,t3; 
+ slip23_2() 
+ { 
+ JFrame ob=new JFrame(); 
+ l1=new JLabel("US Dollars"); 
+ l2=new JLabel("Singapore Dollars"); 
+ l3=new JLabel("Euros"); 
+ t1=new JTextField(10); 
+ t2=new JTextField(10); 
+ t3=new JTextField(10); 
+ ob.add(l1); ob.add(t1); 
+ ob.add(l2); ob.add(t2); 
+ ob.add(l3); ob.add(t3); 
+ ob.setVisible(true);
+ t1.addKeyListener(this); 
+ ob.setLayout(new FlowLayout()); 
+ ob.setSize(400,400); 
+ ob.setDefaultCloseOperation(3); 
+ } 
+ 
+ public void keyReleased(KeyEvent ke) 
+ { 
+ try 
+ { 
+ Double USD=Double.parseDouble(t1.getText()); 
+ Double S=1.41; 
+ Double E=0.92; 
+ //Double sgd =Double.parseDouble(t1.getText()); 
+ Double SGD= USD * S; 
+ //Double euro =Double.parseDouble(t1.getText()); 
+ Formatter fob=new Formatter(); 
+ fob.format("%.2f",SGD); 
+ Double Euro=USD * E; 
+ fob.format("%.2f",Euro); 
+ t2.setText(""+SGD); 
+ t3.setText(""+Euro); 
+ 
+ } 
+ catch(Exception e) 
+ { 
+ System.out.println("Enter Vaules in Box"); 
+ } 
+ 
+ } 
+ public static void main(String []args) 
+ { 
+ slip23_2 ob=new slip23_2(); 
+ Scanner sc=new Scanner(System.in); 
+ 
+ } 
+ } 

@@ -1,0 +1,144 @@
+slip 14:
+Q1->
+import java.util.*;
+import java.io.*;
+class zero extends Exception
+{
+}
+class prime
+{
+static int flag = 0;
+public static void main(String args[])
+{
+Scanner sc = new Scanner(System.in);
+int n,i;
+try
+{
+System.out.println("Enter the number");
+n = sc.nextInt();
+if(n == 0)
+throw new zero();
+for(i=2;i<=n/2;i++)
+{
+if(n % i == 0)
+{
+flag = 1;
+break;
+}
+}
+if(flag == 0)
+System.out.println("Number is prime");
+else
+System.out.println("Number is not prime");
+}
+catch (zero z)
+{
+System.out.print("Number is zero");
+}
+}
+}
+
+Q2->
+commad:vim SyMarks.java
+
+package SY;
+
+import java.util.*;
+
+public class SyMarks {
+    public int ct, mt, et;
+
+    public void getData() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter the computer total out of 100 : ");
+        ct = sc.nextInt();
+        System.out.print("enter the electronic total out of 100 : ");
+        et = sc.nextInt();
+        System.out.print("enter the maths total out of 100 : ");
+        mt = sc.nextInt();
+    }
+}
+
+commad:javac -d . SyMarks.java
+
+vim TyMarks.java
+package TY;
+
+import java.util.*;
+
+public class TyMarks {
+    public int pt, tt;
+
+    public void getData() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter the pratical marks total out of 200 : ");
+        pt = sc.nextInt();
+        System.out.print("enter the theory marks total out of 400 : ");
+        tt = sc.nextInt();
+    }
+}
+commad:javac -d . TyMarks.java
+
+vim StudentInfo.java
+package Student;
+
+import TY.*;
+import SY.*;
+import java.util.*;
+
+class Student {
+    int roll, gt, syt, tyt;
+    String name;
+    float per;
+
+    public void getData() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter roll no of student : ");
+        roll = sc.nextInt();
+        System.out.print("enter name of student : ");
+        name = sc.next();
+    }
+}
+
+public class StudentInfo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter no of student : ");
+        int n = sc.nextInt();
+        Student a[] = new Student[n];
+        TyMarks c[] = new TyMarks[n];
+        SyMarks b[] = new SyMarks[n];
+        System.out.println("enter the details of students :\n");
+        for (int i = 0; i < n; i++) {
+            System.out.println("enter thf info of " + (i + 1) + " student :");
+            a[i] = new Student();
+            b[i] = new SyMarks();
+            c[i] = new TyMarks();
+            a[i].getData();
+            b[i].getData();
+            c[i].getData();
+            a[i].tyt = c[i].pt + c[i].tt;
+            a[i].syt = b[i].et + b[i].ct + b[i].mt;
+            a[i].gt = a[i].tyt + a[i].syt;
+            a[i].per = a[i].gt / 9;
+            System.out.println();
+        }
+        System.out.println("Details of student\n-------------------------------------------\nroll\tName\tGrade");
+        for (int i = 0; i < n; i++) {
+            System.out.print(a[i].roll + "\t" + a[i].name + "\t");
+            if (a[i].per >= 75)
+                System.out.print("A");
+            else if (a[i].per >= 60)
+                System.out.print("B");
+            else if (a[i].per >= 50)
+                System.out.print("C");
+            else if (a[i].per >= 35)
+                System.out.print("D");
+            else
+                System.out.print("fail");
+            System.out.println();
+        }
+    }
+}
+commad:- javac -d . StudentInfo.java
+         java Student.StudentInfo
